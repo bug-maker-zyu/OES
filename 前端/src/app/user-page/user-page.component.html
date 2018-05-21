@@ -1,0 +1,92 @@
+<div class="jumbotron jumbotron-fluid bg-blue text-white py-3">
+  <div class="container">
+    <h1 class="display-3">在线答题系统-学生面板</h1>
+    <hr class="my-2">
+    <div class="row">
+      <p class="lead col-lg-11">{{user.name}}</p>
+      <input type="button" class="btn btn-link text-white" value="退出系统" (click)="logout()">
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-3">
+      <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+        <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home"
+          aria-selected="true">主页</a>
+        <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile"
+          aria-selected="false">个人信息</a>
+        <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-test" role="tab" aria-controls="v-pills-messages"
+          aria-selected="false">个人测试</a>
+        <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings"
+          aria-selected="false">信息修改</a>
+      </div>
+    </div>
+    <div class="col-9">
+      <div class="tab-content" id="v-pills-tabContent">
+        <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">欢迎{{user.name}}同学！！！</div>
+        <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+          <div class="form-group">
+            <label>姓名</label>
+            <input type="text" class="form-control" [(ngModel)]="user.name" readonly>
+          </div>
+          <div class="form-group">
+            <label>性别</label>
+            <input type="text" class="form-control" [(ngModel)]="user.sex" readonly>
+          </div>
+          <div class="form-group">
+            <label>班级</label>
+            <input type="text" class="form-control" [(ngModel)]="user.clazz" readonly>
+          </div>
+          <div class="form-group">
+            <label>学号</label>
+            <input type="text" class="form-control" [(ngModel)]="user.login_id" readonly>
+          </div>
+        </div>
+        <div class="tab-pane fade" id="v-pills-test" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+          <div class="form-group">
+            <label>输入测试题目数量(10~20)</label>
+            <input type="text" class="form-control" [(ngModel)]="app.num">
+            <input class="btn btn-primary my-3" type="button" value="开始测试" (click)="startQuiz()">
+          </div>
+        </div>
+        <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+          <div class="form-group">
+            <label>姓名</label>
+            <input type="text" class="form-control" [(ngModel)]="user.name">
+          </div>
+          <div class="form-group">
+            <label>性别</label>
+            <select class="form-control" [(ngModel)]="user.sex">
+              <option>男</option>
+              <option>女</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>班级</label>
+            <select class="form-control" [(ngModel)]="user.clazz">
+              <option *ngFor="let s of clazzSet" value="{{s.id}}">{{ s.c_name }}</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>学号</label>
+            <input type="text" class="form-control" [(ngModel)]="user.login_id">
+          </div>
+          <div class="form-group">
+            <label>密码</label>
+            <input type="password" class="form-control" [(ngModel)]="user.password">
+          </div>
+          <div class="row">
+            <div class="col-lg-6">
+              <input class="btn btn-primary btn-block" type="button" value="确认修改" (click)="update()">
+            </div>
+            <div class="col-lg-6">
+              <input class="btn btn-warning btn-block" type="button" value="撤销修改" (click)="undo()">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
